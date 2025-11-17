@@ -1,34 +1,29 @@
-# Evaluacion2
-Evaluacion 2
-
-# Sistema de Navegación para Biblioteca Nacional de Chile
-
-## Descripción
-
-Sistema de navegación desarrollado en Python que calcula rutas optimizadas hacia la Biblioteca Nacional de Chile desde cualquier ubicación dentro del país. Integra la API de Graphhopper para proporcionar direcciones precisas en español.
-
-## Características
-
-### Funcionalidades
-- **Cálculo de rutas** desde cualquier ubicación en Chile
-- **Múltiples medios de transporte**: auto, bicicleta y a pie
-- **Instrucciones paso a paso** en español
-- **Comparación de tiempos y distancias** entre transportes
-- **Información de transporte público** (metro y microbuses)
-
-### Especificaciones Técnicas
-- **Lenguaje**: Python 3
-- **API**: Graphhopper Directions API
-- **Entrada**: Coordenadas GPS o direcciones textuales
-- **Salida**: Instrucciones detalladas y tiempos estimados
-
-## Destino Principal
-- **Biblioteca Nacional de Chile**
-- **Dirección**: Av. Libertador Bernardo O'Higgins 651, Santiago
-- **Coordenadas**: -33.4419, -70.6453
-
-## Instalación y Uso
-
-### Requisitos
-```bash
-pip install requests
+function iniciarWebex(destino) {
+    // Configuración del widget
+    const webexConfig = {
+        destination: destino, // Correo de tu compañero
+        destinationType: 'email', // o 'sip' si usas SIP URI
+        accessibilityFeatures: ['fullScreen', 'joinWithoutVideo'],
+    };
+    
+    // Inicializar el widget
+    Webex.init();
+    
+    // Crear el widget de meeting
+    Webex.meetings.createMeetingWidget(webexConfig).then(function(widget) {
+        // Unirse a la reunión automáticamente
+        widget.join();
+        
+        // Opcional: Manejar eventos
+        widget.on('MEETING_JOINED', function() {
+            console.log('Te has unido a la reunión');
+        });
+        
+        widget.on('MEETING_ENDED', function() {
+            console.log('La reunión ha terminado');
+        });
+    }).catch(function(error) {
+        console.error('Error al crear el widget:', error);
+        alert('Error al iniciar la llamada: ' + error.message);
+    });
+}
